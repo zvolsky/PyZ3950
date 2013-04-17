@@ -680,9 +680,9 @@ class MARC:
             subf = {}
             for sub in instance:
                 subf[sub[0]] = escape(sub[1])
-            if (subfield2 == 1):
+            if (subfield2 == 1 and subf.has_key('a')):
                 xml.append('  <titleInfo type="translated">\n    <title>%s</title>\n' % (subf['a']))
-            else:
+            elif (subf.has_key('a')):
                 xml.append('  <titleInfo type="alternative">\n    <title>%s</title>\n' % (subf['a']))
 
             if (subf.has_key('b')):
@@ -703,7 +703,8 @@ class MARC:
             subf = {}
             for sub in uniform:
                 subf[sub[0]] = escape(sub[1])
-            xml.append('  <titleInfo type="uniform">\n    <title>%s</title>\n' % (subf['a']))
+	    if (subf.has_key('a')):
+                xml.append('  <titleInfo type="uniform">\n    <title>%s</title>\n' % (subf['a']))
             if (subf.has_key('n')):
                 xml.append('    <partNumber>%s</partNumber>\n' % (subf['n']))
             if (subf.has_key('p')):
@@ -1071,7 +1072,7 @@ class MARC:
             if (subf.has_key('a')):
                 xml.append('    <scale>%s</scale>\n' % (subf['a']))
             if (subf.has_key('b')):
-                xml.append('    <projection>%s</projection>\n' % (subf['c']))
+                xml.append('    <projection>%s</projection>\n' % (subf['b']))
             xml.append('  </cartographics></subject>\n')
 
         if (self.fields.has_key(656)):
