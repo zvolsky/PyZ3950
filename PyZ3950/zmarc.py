@@ -725,7 +725,8 @@ class MARC:
                     xml.append('  <!-- Marc: %s -->\n' % (k))
                     xml.append('  <name type="%s">\n' % (authorKeyTypes[k]))
                     xml.append('    <role><roleTerm type="text">creator</roleTerm></role>\n')
-                    xml.append('    <namePart>%s</namePart>\n' % (subf['a']))
+                    if (subf.has_key('a')):
+                        xml.append('    <namePart>%s</namePart>\n' % (subf['a']))
                     if (subf.has_key('d')):
                         xml.append('    <namePart type="date">%s</namePart>\n' % (subf['d']))
                     if (subf.has_key('b')):
