@@ -693,7 +693,9 @@ class MARC:
                 xml.append('    <partNumber>%s</partNumber>\n' % (subf['n']))
             if (subf.has_key('p')):
                 xml.append('    <partName>%s</partName>\n' % (subf['p']))
-            xml.append('  </titleInfo>\n')
+
+            if (subf.has_key('a')):
+                xml.append('  </titleInfo>\n')
 
         if self.fields.has_key(130):
             uniform = self.fields[130][0][2]
@@ -711,7 +713,9 @@ class MARC:
                 xml.append('    <partNumber>%s</partNumber>\n' % (subf['n']))
             if (subf.has_key('p')):
                 xml.append('    <partName>%s</partName>\n' % (subf['p']))
-            xml.append('  </titleInfo>\n')
+
+            if (subf.has_key('a')):
+                xml.append('  </titleInfo>\n')
 
 
         # --- Name Fields ---
