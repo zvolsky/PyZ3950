@@ -636,9 +636,11 @@ class MARC:
                 if (sub[0] in ['a', 'f', 'g', 'k']):
                     xml.append(escape(sub[1]))
                     xml.append(' ')
-                elif (sub[0] == 'b'):
+                elif (sub[0] == 'b' and not insubtitle):
                     xml.append("</title>\n    <subtitle>%s " % (escape(sub[1])))
                     insubtitle = 1
+                elif (sub[0] == 'b'):
+                    xml.append("</subtitle>\n    <subtitle>%s " % (escape(sub[1])))
             if (insubtitle):
                 xml.append("</subtitle>\n  </titleInfo>\n")
             else:
