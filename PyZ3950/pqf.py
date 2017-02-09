@@ -196,7 +196,7 @@ class PQFParser:
 
             return (b, prox)
         elif b == 'not':
-            return ('and-not', None)
+            return ('and_not', None)
         else:
             return (b, None)
 

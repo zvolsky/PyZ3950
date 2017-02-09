@@ -133,11 +133,24 @@ def parse_sub (field):
     ind1 = field[0]
     ind2 = field[1]
     sublist = []
-    splitlist = string.split (field[2:], sep)
-    for sub in splitlist:
-        if (sub == ''): # we begin w/ sep, so there's an empty prefix
-            continue
-        sublist.append ((sub[0], string.strip(sub[1:])))
+    if field[3] == '1':
+        splitlist = string.split (field[2:], sep+'1')
+        for sub in splitlist:
+            if (sub == ''): # we begin w/ sep, so there's an empty prefix
+                continue
+            field = string.atoi (sub[:3])
+            if is_fixed (field):
+                sublist.append ((str(field), string.strip(sub[3:])))
+            else:
+                subsub = string.split (sub[3:],sep)[1:]
+                for curr in subsub:
+                    sublist.append((str(field)+curr[0], string.strip(curr[1:])))
+    else: 
+        splitlist = string.split (field[2:], sep)
+        for sub in splitlist:
+            if (sub == ''): # we begin w/ sep, so there's an empty prefix
+                continue
+            sublist.append ((sub[0], string.strip(sub[1:])))
     return (ind1, ind2, sublist)
     
 class MARC:
