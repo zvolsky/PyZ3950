@@ -255,7 +255,7 @@ precedence = (
     ('left', 'LOGOP'),
     )
 
-yacc.yacc (debug=0, tabmodule = 'PyZ3950_parsetab')
+yacc.yacc (debug=0, write_tables=0)
 #yacc.yacc (debug=0, tabpackage = 'PyZ3950', tabmodule='PyZ3950_parsetab')
 
 
