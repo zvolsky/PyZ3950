@@ -357,7 +357,19 @@ class CtxBase:
     def get_codec (self, base_tag):
         def default_enc (x):
             if isinstance (x, str):
-                return (x, 0)
+                # The older solution with .encode('ascii') is buggy for non-ascii content.
+                #   However we give it here back with regard to how str.encode works:
+                #   It will decode string -> unicode with regard to system code page (and then encode it).
+                #   So if there is some 7bit system code page (ascii subset) different from ascii (could it be?)
+                #       we need the .encode() call.
+                #   With the utf-8 content with only ascii characters inside it works too, because utf-8
+                #       code for these "basic / english" characters is the same.
+                #   utf-8 content with other characters inside will fail with UnicodeDecodeError;
+                #       but in such case it can work if we pass the string AS IS.
+                try:
+                    return (x.encode ('ascii'), 0)
+                except UnicodeDecodeError:
+                    return (x, 0)
             elif isinstance (x, basestring):
                 return (x.encode ('utf-8'), 0)
             return (x, 0)
