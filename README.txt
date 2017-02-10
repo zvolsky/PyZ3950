@@ -1,3 +1,11 @@
+# see github
+pip uninstall PyZ3950   # or if not supported manually remove older version dist-packages/PyZ3950
+python setup.py sdist   # will create dist/ folder
+pip install mypackage --no-index --no-cache-dir --find-links file:///home/.../dist/
+# in first start you receive the message about insufficient right to create a parsetable
+#   run same once as root, then continue as standard user
+
+
 This code is licensed under the X license.  It requires Dave Beazley's
 PLY parsing package from http://systems.cs.uchicago.edu/ply/, licensed
 under the LGPL (I've tested with both 1.0 and 1.1), and Python 2.1
