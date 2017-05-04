@@ -6,6 +6,7 @@ See the original [README] (https://github.com/asl2/PyZ3950/blob/master/README.tx
 
 See the project [HISTORY] (https://github.com/asl2/PyZ3950/network).
 
+- pip install ply
 - pip uninstall PyZ3950   # or if not supported manually remove older version dist-packages/PyZ3950
 - python setup.py sdist   # will create dist/ folder
 - pip install PyZ3950 --no-index --no-cache-dir --find-links file:///home/.../dist/
